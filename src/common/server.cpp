@@ -113,7 +113,9 @@ Server::Server(const QString &name, QObject *parent)
         }
     }
 
-    connect( qApp, SIGNAL(aboutToQuit()), this, SLOT(close()) );
+    connect( qApp, &QCoreApplication::aboutToQuit,
+             this, &Server::close,
+             Qt::QueuedConnection );
 }
 
 Server::~Server()
